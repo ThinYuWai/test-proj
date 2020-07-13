@@ -242,3 +242,7 @@ span.padding_10 {
 .margin-left-150 {
 	margin-left: 150px;
 }
+
+.li-bg-color {
+	background: gray;
+}

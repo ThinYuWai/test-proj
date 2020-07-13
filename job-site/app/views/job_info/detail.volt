@@ -51,7 +51,7 @@
        <td class = "width_10">
         
        <button type = "button" name = "apply_list" id = "apply_link">
-       {{ link_to("apply_list/index/id="~value['id'], "Apply List") }}
+       {{ link_to("job_apply/list?id="~value['id'], "Apply List") }}
        </button>
        </td>
      </tr>

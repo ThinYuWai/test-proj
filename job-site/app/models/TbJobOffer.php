@@ -2,7 +2,6 @@
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
-use Phalcon\Logger\Adapter\File as DebugLogger;
 class TbJobOffer extends Model
 {
     /**
@@ -110,6 +109,11 @@ class TbJobOffer extends Model
         $this->modified_date = date('Y-m-d H:i:s');
     }
 
+    /** 
+     * 求人情報取得
+     * params string $fromDate, $toDate
+     * return array 求人データ
+     */
     public static function getJobData($fromDate, $toDate) {
 
         $params = [
@@ -155,6 +159,50 @@ class TbJobOffer extends Model
         return $rows->toarray();
     }
 
+    /** 
+     * 応募情報取得
+     * params string $id
+     * return array 応募データ
+     */
+    public static function getApplyData($id)
+    {
+        
+        $sql = "SELECT 
+                  jo.id,
+                  jo.title,
+                  jo.description,
+                  jo.hire_number,
+                  jo.from_date,
+                  jo.to_date,
+                  u.name,
+                  u.age,
+                  u.degree,
+                  a.apply_status
+                FROM tb_job_offer AS jo
+                LEFT JOIN tb_apply AS a
+                ON a.job_id = jo.id
+                LEFT JOIN tb_user AS u
+                ON u.user_id = a.user_id
+                WHERE jo.id = :id
+                AND jo.del_flg = :del_flg";
+            
+        $params = array(
+            "id" => $id,
+            "del_flg" => FALSE
+        );
+        $model = new TbJobOffer();
+        $rows  = new Resultset(
+            null,
+            $model,
+            $model->getReadConnection()->query($sql, $params)
+        );
 
+        if(!$rows) {
+            return array();
+        }
+
+        return $rows->toarray();
+
+    }
 }
 ?>

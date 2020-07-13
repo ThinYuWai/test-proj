@@ -4,9 +4,14 @@
  * 
  * 新規作成　2020/07/09 Thin Yu Wai headerAction/footerAction
  */
-use Phalcon\Logger\Adapter\File as DebugLogger;
 class JobInfoController extends ControllerBase
 {
+
+    /** 
+     * 初期処理
+     * params なし
+     * return なし
+     */
     public function initialize() {
         
         $this->assets->addCss("css/style.css", true);
@@ -18,6 +23,11 @@ class JobInfoController extends ControllerBase
         $this->view->role = $this->session->get('auth_user') == ADMIN ? "admin" : "user";
     }
 
+    /** 
+     * 求人登録画面
+     * params なし
+     * return なし
+     */
     public function indexAction()
     {
         $this->assets->addJs("js/jquery.validate.min.js",true);
@@ -36,6 +46,11 @@ class JobInfoController extends ControllerBase
         }
     }
 
+    /** 
+     * 求人登録処理
+     * params postデータ $getPost
+     * return なし
+     */
     public function insertAction() {
         $getKeyArr = array(
             'job_id',
@@ -54,6 +69,11 @@ class JobInfoController extends ControllerBase
         $this->response->redirect('job_info/detail');
     }
 
+    /** 
+     * 求人リスト処理
+     * params postデータ $getPost　検索項目
+     * return なし
+     */
     public function detailAction() {
         
         $this->assets->addCss("css/job.css", true);
@@ -71,6 +91,11 @@ class JobInfoController extends ControllerBase
         $this->view->setVar("job_data", $jobData);
     }
 
+    /** 
+     * 求人登録処理　Transaction Begin End
+     * params postデータ $getPost
+     * return なし
+     */
     private function _insertJobOffer($postData) {
 
         try {

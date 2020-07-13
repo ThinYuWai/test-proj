@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="../css/boostrap.min.css">
 <script type = "javascript" src = "../js/bootstrap.min.js"></script>
-{{ assets.outputCss() }}
+<?= $this->assets->outputCss() ?>
   <header>
   <div class = "flex_float">
     <nav class = "nav-div">
       <ul class = "tabrow">
         <li id = "home" class = "home_color">
-          {{ link_to("index/index", "HOME", "class" : "tab_item") }}
+          <?= $this->tag->linkTo(['index/index', 'HOME', 'class' => 'tab_item']) ?>
         </li>
         <li id = "job_info" class = "posting_color">
-          {{ link_to("job_info/index", "JOB POSTING", "class" : "tab_item") }}
+          <?= $this->tag->linkTo(['job_info/index', 'JOB POSTING', 'class' => 'tab_item']) ?>
         </li>
         <li id = "job_detail" class = "job_list_color">
-          {{ link_to("job_info/detail", "JOB LIST", "class" : "tab_item") }}
+          <?= $this->tag->linkTo(['job_info/detail', 'JOB LIST', 'class' => 'tab_item']) ?>
         </li>
       <!--  <li class = "sche_list_color"><a href="">SCHEDULE LIST</a></li> -->
       </ul>

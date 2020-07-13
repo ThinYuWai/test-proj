@@ -6,7 +6,6 @@
  */
 use Phalcon\Http\Request;
 use Phalcon\Mvc\Controller;
-use Phalcon\Logger\Adapter\File as DebugLogger;
 abstract class ControllerBase extends Controller
 {
 
@@ -17,16 +16,17 @@ abstract class ControllerBase extends Controller
      */
     public function beforeExecuteRoute() 
     {
-        $logger = new DebugLogger('../public/temp/debug.log');
-        $logger->log(print_r("FDSF",true),LOG_DEBUG);
-        $logger->log(print_r($this->dispatcher->getActionName(),true),LOG_DEBUG);
-        $logger->log(print_r($this->session->get('auth_user'),true),LOG_DEBUG);
         // if ($this->dispatcher->getActionName() !== 'login' 
         //    && empty($this->session->get('auth_user'))) {
         //     $this->response->redirect('login/login');
-        //    }
+        // }
     }
 
+    /** 
+     * 送信データ取得
+     * params array $keys
+     * return array $data
+     */
     protected function getPostData(array $keys):array {
         $data = array();
         $request = new Request();
