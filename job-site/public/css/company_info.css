@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+h1 {
+	color: red;
+}
+.msg1 {
+	margin-bottom:0;
+}
+.img_design_home {
+  margin: 2px 25%;
+}
+.content_size {
+	min-height: 550px !important;
+}
+.font_color {
+	color : #3c6690;
+}
