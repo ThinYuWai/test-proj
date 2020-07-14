@@ -1,6 +1,5 @@
 <?php
 
-use Phalcon\Logger\Adapter\File as DebugLogger;
 class AjaxController extends ControllerBase {
 
     public function initialize() {

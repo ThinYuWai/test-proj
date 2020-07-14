@@ -14,7 +14,6 @@ j( function() {
     });
 
     $("input[name = 'create_btn']").click(function() {
-        alert(j('#jobInfoForm').valid());
         $('.error-color').html('');
     });
     

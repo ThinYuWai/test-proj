@@ -16,10 +16,10 @@ abstract class ControllerBase extends Controller
      */
     public function beforeExecuteRoute() 
     {
-        // if ($this->dispatcher->getActionName() !== 'login' 
-        //    && empty($this->session->get('auth_user'))) {
-        //     $this->response->redirect('login/login');
-        // }
+        if ($this->dispatcher->getActionName() !== 'login' 
+           && empty($this->session->get('auth_user'))) {
+            $this->response->redirect('login/login');
+        }
     }
 
     /** 
